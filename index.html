@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tennessee Computing League | Free coding for grades 5–8</title>
+<meta name="description" content="A free, student-led coding club for Tennessee 5th–8th graders. Python every Sunday on Zoom, monthly workshops at the John P. Holt Brentwood Library, and real competitions.">
+<meta property="og:title" content="Tennessee Computing League">
+<meta property="og:description" content="Free coding club for Tennessee middle schoolers. Register by Nov 21.">
+<meta property="og:image" content="assets/logo.png">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&amp;family=Raleway:wght@300;400;500;600;700;800&amp;display=swap">
+<style>
+@font-face{font-family:'Redaction 35';font-style:normal;font-weight:400;font-display:swap;src:url(assets/redaction35-400.woff2) format('woff2')}
+@font-face{font-family:'Redaction 35';font-style:normal;font-weight:700;font-display:swap;src:url(assets/redaction35-700.woff2) format('woff2')}
+body{margin:0;background:#FBF8EF}
+a{color:#374785}a:hover{color:#24305E}
+.tcl-caret{display:inline-block;width:0.09em;height:0.82em;background:#F8E9A1;outline:1.5px solid #24305E;margin-left:0.06em;vertical-align:-0.06em;animation:tclblink 0.9s steps(1) infinite}
+@keyframes tclblink{50%{opacity:0}}
+@media (prefers-reduced-motion: reduce){.tcl-caret{animation:none}}
+.tcl-pill{font-family:'Raleway',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#24305E;text-decoration:none;background:#ECEAE2;border:1px solid #24305E;padding:7px 14px;min-height:30px;box-sizing:border-box;display:inline-flex;align-items:center}
+.tcl-pill:hover{background:#F8E9A1;color:#24305E}
+.tcl-btn{font-family:'Raleway',sans-serif;font-weight:700;font-size:15px;letter-spacing:0.02em;text-decoration:none;padding:14px 24px;border:1.5px solid #24305E;display:inline-flex;align-items:center;gap:10px;min-height:48px;box-sizing:border-box}
+.tcl-faq-btn{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 20px;min-height:44px}
+.tcl-faq-btn:hover .tcl-q{color:#374785}
+.tcl-faq-btn:focus-visible{outline:3px solid #F76C6C;outline-offset:-3px}
+.tcl-deco{position:absolute;font-family:ui-monospace,Menlo,Consolas,monospace;color:#6F95B3;white-space:nowrap;pointer-events:none;user-select:none;opacity:0;animation:tclfade 9s ease-in-out infinite}
+@keyframes tclfade{0%{opacity:0;filter:blur(4px);transform:translateY(8px)}18%{opacity:.9;filter:blur(0);transform:none}48%{opacity:.9;filter:blur(0);transform:none}66%{opacity:0;filter:blur(4px);transform:translateY(-8px)}100%{opacity:0}}
+.tcl-up{opacity:0;animation:tclup 0.7s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes tclup{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.tcl-d1{animation-delay:.1s}.tcl-d2{animation-delay:.35s}.tcl-d3{animation-delay:.55s}.tcl-d4{animation-delay:.75s}.tcl-d5{animation-delay:.95s}
+.tcl-trace{stroke-dasharray:600;stroke-dashoffset:600;animation:tcldraw 1.4s .5s ease-out forwards}
+@keyframes tcldraw{to{stroke-dashoffset:0}}
+.tcl-node{transform-box:fill-box;transform-origin:center;animation:tclpulse 2.4s ease-in-out infinite}
+.tcl-node:nth-of-type(odd){animation-delay:-1.2s}
+@keyframes tclpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.35)}}
+.tcl-marquee{display:inline-block;animation:tclmarq 50s linear infinite}
+@keyframes tclmarq{to{transform:translateX(-50%)}}
+.tcl-btn{transition:transform .15s ease, background-color .15s ease}
+.tcl-btn:hover{transform:translate(-2px,-2px);box-shadow:none;outline:1.5px solid #24305E;outline-offset:2px}
+.tcl-pill{transition:background-color .15s ease}
+.tcl-lift{transition:background-color .2s ease}
+.tcl-lift:hover{background-color:#F8E9A1 !important}
+.tcl-ans{animation:tclup .35s ease-out}
+.tcl-nav{display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tcl-nav::-webkit-scrollbar{display:none}
+.tcl-nav a{flex:none}
+@supports (animation-timeline: view()){
+  .tcl-reveal{animation:tclup linear both;animation-timeline:view();animation-range:entry 0% entry 35%}
+}
+@media (max-width: 1500px){.tcl-hide-md{display:none !important}}
+@media (max-width: 760px){
+  .tcl-hide-sm{display:none !important}
+  .tcl-nav{order:3;width:100%;margin:0 -28px;padding:0 28px}
+  .tcl-sec{padding-top:40px !important;padding-bottom:40px !important}
+  .tcl-ctas a{flex:1 1 100%;justify-content:center}
+}
+@media (prefers-reduced-motion: reduce){
+  .tcl-deco{animation:none !important;opacity:.6}
+  .tcl-deco,.tcl-node,.tcl-marquee,.tcl-reveal,.tcl-ans{animation:none !important}
+  .tcl-up{animation:none !important;opacity:1}
+  .tcl-trace{animation:none;stroke-dashoffset:0}
+}
+
+.tcl-faq summary{list-style:none}
+.tcl-faq summary::-webkit-details-marker{display:none}
+.tcl-faq[open] summary{background:#FCF5D4}
+.tcl-sign{flex:none;width:26px;height:26px;border:1px solid #24305E;display:flex;align-items:center;justify-content:center;font-weight:700;color:#24305E;background:#FBF8EF}
+.tcl-sign::before{content:"+"}
+.tcl-faq[open] .tcl-sign::before{content:"\2212"}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div style="min-height: 100vh; background: #FBF8EF; color: #24305E; font-family: 'Open Sans', Arial, sans-serif; font-size: 15px; line-height: 1.6">
+
+  <!-- Nav -->
+  <header style="border-bottom: 1px solid #24305E">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 14px 28px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px">
+      <a href="#top" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #24305E">
+        <img src="assets/logo.png" alt="TCL logo" style="width: 40px; height: 37px; object-fit: contain">
+        <span style="font-family: 'Raleway', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: 0.04em; text-transform: uppercase">TCL</span>
+      </a>
+      <nav class="tcl-nav" aria-label="Main">
+        <a class="tcl-pill" href="#join">Join</a>
+        <a class="tcl-pill" href="#format">Format</a>
+        <a class="tcl-pill" href="#compete">Compete</a>
+        <a class="tcl-pill" href="#schedule">Schedule</a>
+        <a class="tcl-pill" href="#curriculum">Curriculum</a>
+        <a class="tcl-pill" href="#faq">FAQ</a>
+      </nav>
+      <a class="tcl-pill" href="https://docs.google.com/forms/d/e/1FAIpQLSfyD6LRtG96S3rKZ4TfQcmfkVD2pidCp7KUXaKi79F_ZhZHkg/viewform?usp=dialog" style="background: #24305E; color: #F8E9A1">Register ↗</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="top" style="position: relative; overflow: hidden; border-bottom: 1px solid #24305E; background-color: #FBF8EF; background-image: linear-gradient(#E2E6EA 1px, transparent 1px), linear-gradient(90deg, #E2E6EA 1px, transparent 1px); background-size: 56px 56px; background-position: center top">
+    <span class="tcl-deco tcl-hide-sm" aria-hidden="true" style="top: 44px; left: 5%; font-size: 16px; animation-delay: 0.0s; animation-duration: 8s">print("hello")</span>
+    <span class="tcl-deco tcl-hide-sm" aria-hidden="true" style="top: 36px; right: 6%; font-size: 16px; animation-delay: 1.7s; animation-duration: 9s">O(n log n)</span>
+    <span class="tcl-deco tcl-hide-sm" aria-hidden="true" style="top: 140px; left: 2.5%; font-size: 16px; animation-delay: 3.4s; animation-duration: 10s">F5AD₁₆ − 69EB₁₆</span>
+    <span class="tcl-deco tcl-hide-sm" aria-hidden="true" style="top: 126px; right: 3%; font-size: 16px; animation-delay: 5.1s; animation-duration: 11s">2⁸ = 256</span>
+    <span class="tcl-deco tcl-hide-sm tcl-hide-md" aria-hidden="true" style="top: 230px; left: 12%; font-size: 16px; animation-delay: 6.8s; animation-duration: 8s">A ⊕ B</span>
+    <span class="tcl-deco tcl-hide-sm tcl-hide-md" aria-hidden="true" style="top: 236px; right: 14%; font-size: 16px; animation-delay: 8.5s; animation-duration: 9s">LCIRC-3 01101</span>
+    <span class="tcl-deco tcl-hide-sm tcl-hide-md" aria-hidden="true" style="top: 330px; left: 4%; font-size: 16px; animation-delay: 1.2s; animation-duration: 10s">f(n) = f(n−1) + f(n−2)</span>
+    <span class="tcl-deco tcl-hide-sm tcl-hide-md" aria-hidden="true" style="top: 340px; right: 4%; font-size: 16px; animation-delay: 2.9s; animation-duration: 11s">PUSH("A")</span>
+    <span class="tcl-deco tcl-hide-sm" aria-hidden="true" style="top: 440px; left: 8%; font-size: 16px; animation-delay: 4.6s; animation-duration: 8s">+ 5 / 8 − 3 1</span>
+    <span class="tcl-deco tcl-hide-sm" aria-hidden="true" style="top: 450px; right: 7%; font-size: 16px; animation-delay: 6.3s; animation-duration: 9s">if x &gt; 0:</span>
+    <span class="tcl-deco tcl-hide-sm" aria-hidden="true" style="top: 520px; left: 3%; font-size: 16px; animation-delay: 8.0s; animation-duration: 10s">¬(A·B) = ¬A + ¬B</span>
+    <span class="tcl-deco tcl-hide-sm" aria-hidden="true" style="top: 530px; right: 3%; font-size: 16px; animation-delay: 0.7s; animation-duration: 11s">while True:</span>
+
+    <div style="position: relative; max-width: 1080px; margin: 0 auto; padding: 56px 22px 0; text-align: center">
+      <a class="tcl-up tcl-d1" href="https://docs.google.com/forms/d/e/1FAIpQLSfyD6LRtG96S3rKZ4TfQcmfkVD2pidCp7KUXaKi79F_ZhZHkg/viewform?usp=dialog" style="display: inline-flex; align-items: center; border: 1px solid #24305E; background: #FBF8EF; text-decoration: none; color: #24305E; font-size: 14px">
+        <span style="background: #F8E9A1; padding: 7px 14px; border-right: 1px solid #24305E; font-family: 'Raleway', sans-serif; font-weight: 800">First class Nov 28</span>
+        <span style="padding: 7px 14px">Register by Nov 21 →</span>
+      </a>
+
+      <h1 class="tcl-h1" aria-label="Tennessee Computing League" style="position: relative; margin: 30px auto 0; font-family: 'Raleway', sans-serif; font-weight: 800; font-size: clamp(38px, 7vw, 104px); line-height: 1.04; letter-spacing: -0.035em; color: #24305E"><span aria-hidden="true" style="visibility: hidden">Tennessee Computing League<span class="tcl-caret"></span></span><span style="position: absolute; top: 0; left: 0; right: 0"><span id="typedA" aria-hidden="true"></span><span id="typedB" aria-hidden="true" style="color: #374785"></span><span class="tcl-caret" aria-hidden="true"></span></span></h1>
+
+      <svg aria-hidden="true" viewBox="0 0 600 14" style="display: block; width: min(520px, 78%); height: 14px; margin: 16px auto 0; overflow: visible">
+        <line class="tcl-trace" x1="7" y1="7" x2="593" y2="7" stroke="#374785" stroke-width="2.5"></line>
+        <circle class="tcl-node" cx="7" cy="7" r="5" fill="#374785"></circle>
+        <circle class="tcl-node" cx="200" cy="7" r="5" fill="#FBF8EF" stroke="#374785" stroke-width="2.5"></circle>
+        <circle class="tcl-node" cx="400" cy="7" r="5" fill="#F8E9A1" stroke="#374785" stroke-width="2.5"></circle>
+        <circle class="tcl-node" cx="593" cy="7" r="5" fill="#374785"></circle>
+      </svg>
+
+      <p class="tcl-up tcl-d2" style="margin: 26px auto 0; max-width: 620px; font-family: 'Raleway', sans-serif; font-weight: 500; font-size: clamp(19px, 2.4vw, 26px); line-height: 1.35">A free coding club for middle schoolers who’d rather build the game than just play it.</p>
+      <p class="tcl-up tcl-d3" style="margin: 12px auto 0; max-width: 600px; font-size: 16px; color: #374785">Grades 5–8 across Tennessee. Python every Sunday on Zoom, a monthly hands-on workshop in Brentwood, and real competitions. No experience needed.</p>
+
+      <div class="tcl-ctas tcl-up tcl-d4" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 28px">
+        <a class="tcl-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfyD6LRtG96S3rKZ4TfQcmfkVD2pidCp7KUXaKi79F_ZhZHkg/viewform?usp=dialog" style="background: #374785; color: #FBF8EF">Register now <span aria-hidden="true">→</span></a>
+        <a class="tcl-btn" href="#faq" style="background: #FBF8EF; color: #24305E">Parent FAQ</a>
+      </div>
+    </div>
+
+    <div aria-hidden="true" style="position: relative; margin-top: 56px; border-top: 1px solid #24305E; background: #24305E; color: #A8D0E6; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13px; letter-spacing: 0.2em; white-space: nowrap; overflow: hidden; padding: 10px 0"><span class="tcl-marquee">01001000 01001001 · 01010100 01000011 01001100 · print("hi, Tennessee") · 01001000 01001001 · 01010100 01000011 01001100 · for kid in Tennessee: learn(kid) · 01001000 01001001 · 01010100 01000011 01001100 · 01001000 01001001 · 01010100 01000011 01001100 · print("hi, Tennessee") · 01001000 01001001 · 01010100 01000011 01001100 · for kid in Tennessee: learn(kid) · 01001000 01001001 · 01010100 01000011 01001100 · </span></div>
+  </section>
+
+  <!-- Facts strip -->
+  <section aria-label="Quick facts" style="border-bottom: 1px solid #24305E; background: #FBF8EF">
+    <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))">
+      <div style="padding: 18px 28px; border-right: 1px solid #24305E; border-bottom: 1px solid #24305E; margin-bottom: -1px">
+        <div style="font-family: 'Raleway', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #374785">Who</div>
+        <div style="font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 20px">Grades 5–8, Tennessee</div>
+      </div>
+      <div style="padding: 18px 28px; border-right: 1px solid #24305E; border-bottom: 1px solid #24305E; margin-bottom: -1px">
+        <div style="font-family: 'Raleway', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #374785">Cost</div>
+        <div style="font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 20px">Free to learn · $20/yr to compete</div>
+      </div>
+      <div style="padding: 18px 28px; border-right: 1px solid #24305E; border-bottom: 1px solid #24305E; margin-bottom: -1px">
+        <div style="font-family: 'Raleway', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #374785">Weekly</div>
+        <div style="font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 20px">Sundays ~11 AM, Zoom</div>
+      </div>
+      <div style="padding: 18px 28px; border-bottom: 1px solid #24305E; margin-bottom: -1px">
+        <div style="font-family: 'Raleway', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #374785">Monthly</div>
+        <div style="font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 20px">Brentwood Library</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Join -->
+  <section id="join" style="border-bottom: 1px solid #24305E; background: #F8E9A1">
+    <div class="tcl-sec" style="max-width: 1240px; margin: 0 auto; padding: 56px 22px">
+      <div style="font-family: 'Raleway', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #24305E">(01) Join</div>
+      <h2 style="margin: 6px 0 0; font-family: 'Raleway', sans-serif; font-weight: 300; font-size: clamp(36px, 4.6vw, 60px); line-height: 1.05; letter-spacing: -0.01em">Three steps <span style="font-weight: 700">to get in.</span></h2>
+      <ol class="tcl-reveal" style="list-style: none; margin: 30px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); border: 1px solid #24305E; background: #FBF8EF">
+        <li style="padding: 22px 24px; border-right: 1px solid #24305E; border-bottom: 1px solid #24305E; margin-bottom: -1px">
+          <div style="font-family: 'Redaction 35', Georgia, serif; font-size: 44px; line-height: 1; color: #374785">1</div>
+          <h3 style="margin: 12px 0 4px; font-family: 'Raleway', sans-serif; font-weight: 800; font-size: 20px">Register</h3>
+          <p style="margin: 0 0 14px">Fill out the form by <strong>November 21</strong>.</p>
+          <a class="tcl-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfyD6LRtG96S3rKZ4TfQcmfkVD2pidCp7KUXaKi79F_ZhZHkg/viewform?usp=dialog" style="background: #374785; color: #FBF8EF; padding: 10px 18px; min-height: 44px">Open the form →</a>
+        </li>
+        <li style="padding: 22px 24px; border-right: 1px solid #24305E; border-bottom: 1px solid #24305E; margin-bottom: -1px">
+          <div style="font-family: 'Redaction 35', Georgia, serif; font-size: 44px; line-height: 1; color: #374785">2</div>
+          <h3 style="margin: 12px 0 4px; font-family: 'Raleway', sans-serif; font-weight: 800; font-size: 20px">Join Google Classroom</h3>
+          <p style="margin: 0 0 14px">Zoom links, lessons and announcements all live here.</p>
+          <div style="display: inline-block; border: 1px dashed #24305E; padding: 9px 14px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 15px; background: #F8E9A1">Class code: [CODE]</div>
+        </li>
+        <li style="padding: 22px 24px; border-bottom: 1px solid #24305E; margin-bottom: -1px">
+          <div style="font-family: 'Redaction 35', Georgia, serif; font-size: 44px; line-height: 1; color: #374785">3</div>
+          <h3 style="margin: 12px 0 4px; font-family: 'Raleway', sans-serif; font-weight: 800; font-size: 20px">Follow along</h3>
+          <p style="margin: 0 0 14px">Updates, photos and the challenge of the week.</p>
+          <a class="tcl-btn" href="https://www.instagram.com/tennessee_computing_league/" style="background: #FBF8EF; color: #24305E; padding: 10px 18px; min-height: 44px">@tennessee_computing_league</a>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Format -->
+  <section id="format" style="border-bottom: 1px solid #24305E; background: #A8D0E6">
+    <div class="tcl-sec" style="max-width: 1240px; margin: 0 auto; padding: 56px 22px">
+      <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 40px">
+        <div>
+          <div style="font-family: 'Raleway', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #374785">(02) The format</div>
+          <h2 style="margin: 6px 0 0; font-family: 'Raleway', sans-serif; font-weight: 300; font-size: clamp(36px, 4.6vw, 60px); line-height: 1.05; letter-spacing: -0.01em">Three parts, <span style="font-weight: 700">every session.</span></h2>
+        </div>
+        <p style="margin: 0; max-width: 400px">Students don’t just copy code. They learn how computers actually think, one layer at a time.</p>
+      </div>
+      <div class="tcl-reveal" style="margin-top: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); border: 1px solid #24305E; background: #FBF8EF">
+        <div style="padding: 22px 24px; border-right: 1px solid #24305E; border-bottom: 1px solid #24305E; margin-bottom: -1px">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+            <span style="font-family: 'Redaction 35', Georgia, serif; font-size: 44px; line-height: 1; color: #374785">1</span>
+            <code style="font-size: 13px; background: #24305E; color: #F8E9A1; padding: 3px 9px">print("hi")</code>
+          </div>
+          <h3 style="margin: 16px 0 4px; font-family: 'Raleway', sans-serif; font-weight: 800; font-size: 21px">Code</h3>
+          <p style="margin: 0">Hands-on Python in Google Colab. We demo it live, then students write and run their own.</p>
+        </div>
+        <div style="padding: 22px 24px; border-right: 1px solid #24305E; border-bottom: 1px solid #24305E; margin-bottom: -1px; background: #E8F2F8">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+            <span style="font-family: 'Redaction 35', Georgia, serif; font-size: 44px; line-height: 1; color: #374785">2</span>
+            <code style="font-size: 13px; background: #24305E; color: #F8E9A1; padding: 3px 9px">CPU · RAM · OS</code>
+          </div>
+          <h3 style="margin: 16px 0 4px; font-family: 'Raleway', sans-serif; font-weight: 800; font-size: 21px">How computers work</h3>
+          <p style="margin: 0">A quick lesson on the machine itself, like what’s hardware and what’s software.</p>
+        </div>
+        <div style="padding: 22px 24px; border-bottom: 1px solid #24305E; margin-bottom: -1px; background: #FCF5D4">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+            <span style="font-family: 'Redaction 35', Georgia, serif; font-size: 44px; line-height: 1; color: #374785">3</span>
+            <code style="font-size: 13px; background: #24305E; color: #F8E9A1; padding: 3px 9px">1011₂ · O(n)</code>
+          </div>
+          <h3 style="margin: 16px 0 4px; font-family: 'Raleway', sans-serif; font-weight: 800; font-size: 21px">Theory</h3>
+          <p style="margin: 0">The big ideas behind code: binary numbers, how fast an algorithm runs (Big-O), and more.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compete -->
+  <section id="compete" style="border-bottom: 1px solid #24305E; background: #FBF8EF">
+    <div class="tcl-sec" style="max-width: 1240px; margin: 0 auto; padding: 56px 22px">
+      <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 40px">
+        <div>
+          <div style="font-family: 'Raleway', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #374785">(03) Compete</div>
+          <h2 style="margin: 6px 0 0; font-family: 'Raleway', sans-serif; font-weight: 300; font-size: clamp(36px, 4.6vw, 60px); line-height: 1.05; letter-spacing: -0.01em">More than a <span style="font-weight: 700">coding club.</span></h2>
+        </div>
+        <p style="margin: 0; max-width: 400px">Students put what they learn to the test, against real problems and other students.</p>
+      </div>
+      <div class="tcl-reveal" style="margin-top: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); border: 1px solid #24305E">
+        <div style="padding: 22px 24px; border-right: 1px solid #24305E; border-bottom: 1px solid #24305E; margin-bottom: -1px; display: flex; gap: 18px">
+          <div style="flex: none; width: 56px; height: 56px; border: 1px solid #24305E; background: #24305E; color: #F8E9A1; display: flex; align-items: center; justify-content: center; font-family: 'Raleway', sans-serif; font-weight: 800; font-size: 14px; letter-spacing: 0.06em">ACSL</div>
+          <div>
+            <h3 style="margin: 0 0 4px; font-family: 'Raleway', sans-serif; font-weight: 800; font-size: 20px">American Computer Science League</h3>
+            <p style="margin: 0">An established national contest. Eligible students train for it and compete as part of TCL.</p>
+          </div>
+        </div>
+        <div style="padding: 22px 24px; border-bottom: 1px solid #24305E; margin-bottom: -1px; display: flex; gap: 18px; background: #FCF5D4">
+          <div style="flex: none; width: 56px; height: 56px; border: 1px solid #24305E; background: #F76C6C; color: #24305E; display: flex; align-items: center; justify-content: center; font-family: 'Raleway', sans-serif; font-weight: 800; font-size: 14px; letter-spacing: 0.06em">TCL</div>
+          <div>
+            <h3 style="margin: 0 0 4px; font-family: 'Raleway', sans-serif; font-weight: 800; font-size: 20px">TCL competitions, twice a year</h3>
+            <p style="margin: 0">Our own friendly contests full of programming challenges, so students can see how far they’ve come.</p>
+          </div>
+        </div>
+      </div>
+      <div class="tcl-reveal" style="margin-top: 20px; border: 1px solid #24305E; background: #24305E; color: #FBF8EF; display: flex; flex-wrap: wrap; align-items: stretch">
+        <div style="flex: none; padding: 18px 26px; background: #F8E9A1; color: #24305E; border-right: 1px solid #24305E; display: flex; align-items: baseline; gap: 6px">
+          <span style="font-family: 'Raleway', sans-serif; font-weight: 800; font-size: 52px; line-height: 1; letter-spacing: -0.03em">$20</span>
+          <span style="font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 14px">/ year</span>
+        </div>
+        <div style="flex: 1 1 280px; padding: 16px 24px; display: flex; flex-direction: column; justify-content: center">
+          <strong style="font-family: 'Raleway', sans-serif; font-size: 19px; color: #F8E9A1">Competing is optional. One flat fee covers the whole year.</strong>
+          <span style="font-size: 15px">Students who want to compete pay $20 once for the entire year. Classes and workshops stay free for everyone.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Schedule -->
+  <section id="schedule" style="border-bottom: 1px solid #24305E; background: #F8E9A1">
+    <div class="tcl-sec" style="max-width: 1240px; margin: 0 auto; padding: 56px 22px">
+      <div style="font-family: 'Raleway', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #374785">(04) Schedule</div>
+      <h2 style="margin: 6px 0 0; font-family: 'Raleway', sans-serif; font-weight: 300; font-size: clamp(36px, 4.6vw, 60px); line-height: 1.05; letter-spacing: -0.01em">Online every week. <span style="font-weight: 700">In person every month.</span></h2>
+      <div class="tcl-reveal" style="margin-top: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px">
+        <div style="border: 1px solid #24305E; background: #FBF8EF">
+          <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 12px 20px; border-bottom: 1px solid #24305E; background: #374785; color: #FBF8EF">
+            <strong style="font-family: 'Raleway', sans-serif; font-size: 17px">Weekly · Zoom</strong>
+            <span style="font-size: 14px">90 min</span>
+          </div>
+          <div style="padding: 16px 20px">
+            <div style="font-family: 'Redaction 35', Georgia, serif; font-size: 34px; line-height: 1.1">Sundays, ~11:00 AM</div>
+            <p style="margin: 4px 0 10px; color: #374785">Central time. Starts November 28. The Zoom link is posted in Google Classroom.</p>
+            <ul style="margin: 0; padding-left: 18px">
+              <li>Structured CS lessons and theory explained simply</li>
+              <li>Live programming demos</li>
+              <li>Hands-on coding exercises</li>
+            </ul>
+          </div>
+        </div>
+        <div style="border: 1px solid #24305E; background: #FBF8EF">
+          <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 12px 20px; border-bottom: 1px solid #24305E; background: #F8E9A1">
+            <strong style="font-family: 'Raleway', sans-serif; font-size: 17px">Monthly · In person</strong>
+            <span style="font-size: 14px">60 min</span>
+          </div>
+          <div style="padding: 16px 20px">
+            <div style="font-family: 'Redaction 35', Georgia, serif; font-size: 34px; line-height: 1.1">Brentwood Library</div>
+            <p style="margin: 4px 0 10px; color: #374785">John P. Holt Brentwood Library, 8109 Concord Road, Brentwood, TN 37027. Dates are announced in Google Classroom.</p>
+            <ul style="margin: 0; padding-left: 18px">
+              <li>Team problem-solving and coding activities</li>
+              <li>Interactive CS challenges</li>
+              <li>Competition prep</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Curriculum -->
+  <section id="curriculum" style="border-bottom: 1px solid #24305E; background: #A8D0E6">
+    <div class="tcl-sec" style="max-width: 1240px; margin: 0 auto; padding: 56px 22px">
+      <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 40px">
+        <div>
+          <div style="font-family: 'Raleway', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #374785">(05) Curriculum</div>
+          <h2 style="margin: 6px 0 0; font-family: 'Raleway', sans-serif; font-weight: 300; font-size: clamp(36px, 4.6vw, 60px); line-height: 1.05; letter-spacing: -0.01em">What students <span style="font-weight: 700">will learn.</span></h2>
+        </div>
+        <p style="margin: 0; max-width: 420px">Programming follows a step-by-step path from first line of code to finished project. Theory follows the official ACSL topics, so students are ready to compete.</p>
+      </div>
+      <div class="tcl-reveal" style="margin-top: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; align-items: start">
+        <div style="border: 1px solid #24305E; background: #FBF8EF">
+          <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 12px 18px; border-bottom: 1px solid #24305E; background: #374785; color: #FBF8EF">
+            <strong style="font-family: 'Raleway', sans-serif; font-size: 17px">Programming track</strong>
+            <span style="font-size: 14px">Python · Google Colab</span>
+          </div>
+          <ol style="list-style: none; margin: 0 0 -1px; padding: 0">
+            <li style="display: flex; gap: 14px; padding: 12px 18px; border-bottom: 1px solid #24305E">
+              <span style="flex: none; width: 26px; font-family: 'Raleway', sans-serif; font-weight: 800; color: #374785">01</span>
+              <span><strong style="font-family: 'Raleway', sans-serif; font-size: 16px">Intro to computer science</strong><br><span style="font-size: 14px">What CS is and where it shows up in everyday life, plus the basic vocabulary.</span></span>
+            </li>
+            <li style="display: flex; gap: 14px; padding: 12px 18px; border-bottom: 1px solid #24305E">
+              <span style="flex: none; width: 26px; font-family: 'Raleway', sans-serif; font-weight: 800; color: #374785">02</span>
+              <span><strong style="font-family: 'Raleway', sans-serif; font-size: 16px">Algorithms &amp; sequencing</strong><br><span style="font-size: 14px">Algorithms as step-by-step instructions. Students write their own for everyday tasks.</span></span>
+            </li>
+            <li style="display: flex; gap: 14px; padding: 12px 18px; border-bottom: 1px solid #24305E">
+              <span style="flex: none; width: 26px; font-family: 'Raleway', sans-serif; font-weight: 800; color: #374785">03</span>
+              <span><strong style="font-family: 'Raleway', sans-serif; font-size: 16px">Intro to programming</strong><br><span style="font-size: 14px">Variables, data types and operators, written as real Python in Google Colab.</span></span>
+            </li>
+            <li style="display: flex; gap: 14px; padding: 12px 18px; border-bottom: 1px solid #24305E">
+              <span style="flex: none; width: 26px; font-family: 'Raleway', sans-serif; font-weight: 800; color: #374785">04</span>
+              <span><strong style="font-family: 'Raleway', sans-serif; font-size: 16px">Conditionals &amp; loops</strong><br><span style="font-size: 14px">How programs make decisions with if/else, and repeat work with loops.</span></span>
+            </li>
+            <li style="display: flex; gap: 14px; padding: 12px 18px; border-bottom: 1px solid #24305E">
+              <span style="flex: none; width: 26px; font-family: 'Raleway', sans-serif; font-weight: 800; color: #374785">05</span>
+              <span><strong style="font-family: 'Raleway', sans-serif; font-size: 16px">Functions &amp; abstraction</strong><br><span style="font-size: 14px">Organizing code into reusable functions so programs stay clean and short.</span></span>
+            </li>
+            <li style="display: flex; gap: 14px; padding: 12px 18px; border-bottom: 1px solid #24305E">
+              <span style="flex: none; width: 26px; font-family: 'Raleway', sans-serif; font-weight: 800; color: #374785">06</span>
+              <span><strong style="font-family: 'Raleway', sans-serif; font-size: 16px">Build a game or quiz</strong><br><span style="font-size: 14px">Students make an interactive game or quiz using everything so far.</span></span>
+            </li>
+            <li style="display: flex; gap: 14px; padding: 12px 18px; border-bottom: 1px solid #24305E">
+              <span style="flex: none; width: 26px; font-family: 'Raleway', sans-serif; font-weight: 800; color: #374785">07</span>
+              <span><strong style="font-family: 'Raleway', sans-serif; font-size: 16px">Testing &amp; debugging</strong><br><span style="font-size: 14px">Common errors, how to find them, and how to make code better.</span></span>
+            </li>
+            <li style="display: flex; gap: 14px; padding: 12px 18px; border-bottom: 1px solid #24305E">
+              <span style="flex: none; width: 26px; font-family: 'Raleway', sans-serif; font-weight: 800; color: #374785">08</span>
+              <span><strong style="font-family: 'Raleway', sans-serif; font-size: 16px">Intro to AI models</strong><br><span style="font-size: 14px">How AI models learn from data, what they can and can’t do, and how to use them responsibly.</span></span>
+            </li>
+            <li style="display: flex; gap: 14px; padding: 12px 18px; border-bottom: 1px solid #24305E">
+              <span style="flex: none; width: 26px; font-family: 'Raleway', sans-serif; font-weight: 800; color: #374785">09</span>
+              <span><strong style="font-family: 'Raleway', sans-serif; font-size: 16px">Build your own AI model</strong><br><span style="font-size: 14px">Students collect data, train a simple model of their own, and test how well it makes predictions.</span></span>
+            </li>
+            <li style="display: flex; gap: 14px; padding: 12px 18px; border-bottom: 1px solid #24305E">
+              <span style="flex: none; width: 26px; font-family: 'Raleway', sans-serif; font-weight: 800; color: #374785">10</span>
+              <span><strong style="font-family: 'Raleway', sans-serif; font-size: 16px">Show &amp; tell</strong><br><span style="font-size: 14px">Review the big ideas. Students present their projects and explain their code.</span></span>
+            </li>
+          </ol>
+        </div>
+        <div style="border: 1px solid #24305E; background: #FBF8EF">
+          <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 12px 18px; border-bottom: 1px solid #24305E; background: #F8E9A1">
+            <strong style="font-family: 'Raleway', sans-serif; font-size: 17px">Theory track</strong>
+            <span style="font-size: 14px">Follows the ACSL categories</span>
+          </div>
+          <ul style="list-style: none; margin: 0 0 -1px; padding: 0">
+            <li style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px 12px; padding: 12px 18px; border-bottom: 1px solid #24305E">
+              <strong style="font-family: 'Raleway', sans-serif; font-size: 16px">Number systems</strong>
+              <code style="font-size: 12px; background: #24305E; color: #F8E9A1; padding: 2px 8px">1011₂ · 7B₁₆</code>
+            </li>
+            <li style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px 12px; padding: 12px 18px; border-bottom: 1px solid #24305E">
+              <strong style="font-family: 'Raleway', sans-serif; font-size: 16px">Boolean algebra</strong>
+              <code style="font-size: 12px; background: #24305E; color: #F8E9A1; padding: 2px 8px">¬(A+B)</code>
+            </li>
+            <li style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px 12px; padding: 12px 18px; border-bottom: 1px solid #24305E">
+              <strong style="font-family: 'Raleway', sans-serif; font-size: 16px">Digital electronics</strong>
+              <code style="font-size: 12px; background: #24305E; color: #F8E9A1; padding: 2px 8px">AND · NAND · XOR</code>
+            </li>
+            <li style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px 12px; padding: 12px 18px; border-bottom: 1px solid #24305E">
+              <strong style="font-family: 'Raleway', sans-serif; font-size: 16px">Bit-string flicking</strong>
+              <code style="font-size: 12px; background: #24305E; color: #F8E9A1; padding: 2px 8px">RSHIFT-1 10101</code>
+            </li>
+            <li style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px 12px; padding: 12px 18px; border-bottom: 1px solid #24305E">
+              <strong style="font-family: 'Raleway', sans-serif; font-size: 16px">Recursive functions</strong>
+              <code style="font-size: 12px; background: #24305E; color: #F8E9A1; padding: 2px 8px">f(n−1) + f(n−2)</code>
+            </li>
+            <li style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px 12px; padding: 12px 18px; border-bottom: 1px solid #24305E">
+              <strong style="font-family: 'Raleway', sans-serif; font-size: 16px">Prefix / infix / postfix</strong>
+              <code style="font-size: 12px; background: #24305E; color: #F8E9A1; padding: 2px 8px">5 8 3 1 − / +</code>
+            </li>
+            <li style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px 12px; padding: 12px 18px; border-bottom: 1px solid #24305E">
+              <strong style="font-family: 'Raleway', sans-serif; font-size: 16px">What does this program do?</strong>
+              <code style="font-size: 12px; background: #24305E; color: #F8E9A1; padding: 2px 8px">trace the code</code>
+            </li>
+            <li style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px 12px; padding: 12px 18px; border-bottom: 1px solid #24305E">
+              <strong style="font-family: 'Raleway', sans-serif; font-size: 16px">Data structures</strong>
+              <code style="font-size: 12px; background: #24305E; color: #F8E9A1; padding: 2px 8px">stacks · queues · trees</code>
+            </li>
+            <li style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px 12px; padding: 12px 18px; border-bottom: 1px solid #24305E">
+              <strong style="font-family: 'Raleway', sans-serif; font-size: 16px">Graph theory</strong>
+              <code style="font-size: 12px; background: #24305E; color: #F8E9A1; padding: 2px 8px">paths · cycles</code>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Lesson preview -->
+      <div class="tcl-reveal" style="margin-top: 20px; border: 1px solid #24305E; background: #FBF8EF">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; padding: 12px 18px; border-bottom: 1px solid #24305E; background: #24305E; color: #FBF8EF">
+          <strong style="font-family: 'Raleway', sans-serif; font-size: 17px">Peek inside a real lesson</strong>
+          <span id="slideLabel" style="font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13px; color: #F8E9A1">1 / 6</span>
+        </div>
+        <div style="padding: 18px; display: flex; flex-direction: column; gap: 14px; align-items: center">
+          <div style="position: relative; width: 100%; max-width: 900px; aspect-ratio: 16 / 9; border: 1px solid #24305E; background: #E8F2F8; overflow: hidden">
+            <img id="slideImg" alt="" hidden style="display: block; width: 100%; height: 100%; object-fit: contain; background: #ffffff">
+            <div id="slidePh" style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center; padding: 20px; background-image: linear-gradient(#D6E6F0 1px, transparent 1px), linear-gradient(90deg, #D6E6F0 1px, transparent 1px); background-size: 32px 32px">
+              <span id="slideNum" style="font-family: 'Raleway', sans-serif; font-weight: 800; font-size: clamp(28px, 5vw, 56px); color: #374785">Slide 1</span>
+              <span style="font-size: 14px; border: 1px dashed #24305E; background: #FBF8EF; padding: 6px 12px">[Lesson slide image goes here]</span>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap">
+            <button type="button" class="tcl-btn" id="slidePrev" aria-label="Previous slide" style="background: #FBF8EF; color: #24305E; cursor: pointer; padding: 10px 18px">← Prev</button>
+            <div style="display: flex; gap: 6px; align-items: center">
+<span id="slideDots" style="display: contents"></span>
+            </div>
+            <button type="button" class="tcl-btn" id="slideNext" aria-label="Next slide" style="background: #374785; color: #FBF8EF; cursor: pointer; padding: 10px 18px">Next →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" style="border-bottom: 1px solid #24305E; background: #FBF8EF">
+    <div class="tcl-sec" style="max-width: 1240px; margin: 0 auto; padding: 56px 22px">
+      <div style="font-family: 'Raleway', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #374785">(06) FAQ</div>
+      <h2 style="margin: 6px 0 0; font-family: 'Raleway', sans-serif; font-weight: 300; font-size: clamp(36px, 4.6vw, 60px); line-height: 1.05; letter-spacing: -0.01em">Questions from <span style="font-weight: 700">parents.</span></h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 30px; align-items: flex-start">
+        <div style="flex: 999 1 560px; min-width: 0; border: 1px solid #24305E; border-bottom: 0; background: #FBF8EF">
+            <details class="tcl-faq" open style="border-bottom: 1px solid #24305E">
+              <summary class="tcl-faq-btn">
+                <span style="display: flex; gap: 14px; align-items: baseline">
+                  <span style="font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: #374785">01</span>
+                  <span class="tcl-q" style="font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 17px; color: #24305E">Who can join?</span>
+                </span>
+                <span class="tcl-sign" aria-hidden="true"></span>
+              </summary>
+              <p class="tcl-ans" style="margin: 0; padding: 0 20px 16px 48px; background: #FCF5D4">Any Tennessee student in grades 5 through 8. Total beginners are welcome, and experienced coders get harder challenges so they keep growing.</p>
+            </details>
+            <details class="tcl-faq" style="border-bottom: 1px solid #24305E">
+              <summary class="tcl-faq-btn">
+                <span style="display: flex; gap: 14px; align-items: baseline">
+                  <span style="font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: #374785">02</span>
+                  <span class="tcl-q" style="font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 17px; color: #24305E">How much does it cost?</span>
+                </span>
+                <span class="tcl-sign" aria-hidden="true"></span>
+              </summary>
+              <p class="tcl-ans" style="margin: 0; padding: 0 20px 16px 48px; background: #FCF5D4">Learning with TCL is free: weekly lessons, monthly workshops and all materials. Students who want to compete pay just $20 for the whole year. That one fee covers competition costs, and competing is optional.</p>
+            </details>
+            <details class="tcl-faq" style="border-bottom: 1px solid #24305E">
+              <summary class="tcl-faq-btn">
+                <span style="display: flex; gap: 14px; align-items: baseline">
+                  <span style="font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: #374785">03</span>
+                  <span class="tcl-q" style="font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 17px; color: #24305E">What does my student need?</span>
+                </span>
+                <span class="tcl-sign" aria-hidden="true"></span>
+              </summary>
+              <p class="tcl-ans" style="margin: 0; padding: 0 20px 16px 48px; background: #FCF5D4">Their own laptop and a Google account. A parent’s Google account is fine. They will also need internet access for the Sunday Zoom sessions.</p>
+            </details>
+            <details class="tcl-faq" style="border-bottom: 1px solid #24305E">
+              <summary class="tcl-faq-btn">
+                <span style="display: flex; gap: 14px; align-items: baseline">
+                  <span style="font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: #374785">04</span>
+                  <span class="tcl-q" style="font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 17px; color: #24305E">What programming language will they learn?</span>
+                </span>
+                <span class="tcl-sign" aria-hidden="true"></span>
+              </summary>
+              <p class="tcl-ans" style="margin: 0; padding: 0 20px 16px 48px; background: #FCF5D4">Python. We code in Google Colab, which runs in the web browser, so there is nothing to install.</p>
+            </details>
+            <details class="tcl-faq" style="border-bottom: 1px solid #24305E">
+              <summary class="tcl-faq-btn">
+                <span style="display: flex; gap: 14px; align-items: baseline">
+                  <span style="font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: #374785">05</span>
+                  <span class="tcl-q" style="font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 17px; color: #24305E">When does it start?</span>
+                </span>
+                <span class="tcl-sign" aria-hidden="true"></span>
+              </summary>
+              <p class="tcl-ans" style="margin: 0; padding: 0 20px 16px 48px; background: #FCF5D4">The first class is November 28. Registration closes November 21.</p>
+            </details>
+            <details class="tcl-faq" style="border-bottom: 1px solid #24305E">
+              <summary class="tcl-faq-btn">
+                <span style="display: flex; gap: 14px; align-items: baseline">
+                  <span style="font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: #374785">06</span>
+                  <span class="tcl-q" style="font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 17px; color: #24305E">When and where are sessions?</span>
+                </span>
+                <span class="tcl-sign" aria-hidden="true"></span>
+              </summary>
+              <p class="tcl-ans" style="margin: 0; padding: 0 20px 16px 48px; background: #FCF5D4">Online sessions are on Zoom every Sunday around 11 AM and last 90 minutes. Once a month there is a 60-minute in-person workshop at the John P. Holt Brentwood Library (8109 Concord Road).</p>
+            </details>
+            <details class="tcl-faq" style="border-bottom: 1px solid #24305E">
+              <summary class="tcl-faq-btn">
+                <span style="display: flex; gap: 14px; align-items: baseline">
+                  <span style="font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: #374785">07</span>
+                  <span class="tcl-q" style="font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 17px; color: #24305E">What happens in a session?</span>
+                </span>
+                <span class="tcl-sign" aria-hidden="true"></span>
+              </summary>
+              <p class="tcl-ans" style="margin: 0; padding: 0 20px 16px 48px; background: #FCF5D4">Three parts: hands-on Python programming, a short lesson on how computers work (like hardware vs. software), and a theory segment (like binary numbers or Big-O).</p>
+            </details>
+            <details class="tcl-faq" style="border-bottom: 1px solid #24305E">
+              <summary class="tcl-faq-btn">
+                <span style="display: flex; gap: 14px; align-items: baseline">
+                  <span style="font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: #374785">08</span>
+                  <span class="tcl-q" style="font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 17px; color: #24305E">How does competing work?</span>
+                </span>
+                <span class="tcl-sign" aria-hidden="true"></span>
+              </summary>
+              <p class="tcl-ans" style="margin: 0; padding: 0 20px 16px 48px; background: #FCF5D4">Competing is optional. Students who want to compete pay $20 once for the entire year. They prepare for the American Computer Science League (ACSL) and take part in two TCL competitions a year.</p>
+            </details>
+            <details class="tcl-faq" style="border-bottom: 1px solid #24305E">
+              <summary class="tcl-faq-btn">
+                <span style="display: flex; gap: 14px; align-items: baseline">
+                  <span style="font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: #374785">09</span>
+                  <span class="tcl-q" style="font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 17px; color: #24305E">Who runs TCL?</span>
+                </span>
+                <span class="tcl-sign" aria-hidden="true"></span>
+              </summary>
+              <p class="tcl-ans" style="margin: 0; padding: 0 20px 16px 48px; background: #FCF5D4">TCL is an independent, student-led initiative. Students build and teach the curriculum, and parents and adult advisors provide oversight.</p>
+            </details>
+            <details class="tcl-faq" style="border-bottom: 1px solid #24305E">
+              <summary class="tcl-faq-btn">
+                <span style="display: flex; gap: 14px; align-items: baseline">
+                  <span style="font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; color: #374785">10</span>
+                  <span class="tcl-q" style="font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 17px; color: #24305E">How will we get updates?</span>
+                </span>
+                <span class="tcl-sign" aria-hidden="true"></span>
+              </summary>
+              <p class="tcl-ans" style="margin: 0; padding: 0 20px 16px 48px; background: #FCF5D4">Everything official goes in Google Classroom. We also post on Instagram at @tennessee_computing_league. Questions? Email tennesseecomputingleague@gmail.com.</p>
+            </details>
+
+        </div>
+        <aside style="flex: 1 1 280px; min-width: 0; border: 1px solid #24305E; background: #24305E; color: #FBF8EF">
+          <div style="padding: 12px 20px; border-bottom: 1px solid #374785; font-family: 'Raleway', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #A8D0E6">Checklist</div>
+          <div style="padding: 16px 20px">
+            <h3 style="margin: 0 0 10px; font-family: 'Raleway', sans-serif; font-weight: 800; font-size: 19px; color: #F8E9A1">What your student needs</h3>
+            <ul style="margin: 0; padding-left: 18px">
+              <li>Their own laptop</li>
+              <li>A Google account (a parent’s is fine)</li>
+              <li>Internet for Sunday Zoom calls</li>
+              <li>Curiosity. No experience needed.</li>
+            </ul>
+          </div>
+          <div style="padding: 14px 20px; border-top: 1px solid #374785; font-size: 14px">Still have a question?<br><a href="mailto:tennesseecomputingleague@gmail.com" style="color: #F8E9A1; font-weight: 700; word-break: break-all">tennesseecomputingleague@gmail.com</a></div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background: #24305E; color: #FBF8EF">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 28px; display: flex; flex-wrap: wrap; gap: 20px 40px; justify-content: space-between; align-items: center">
+      <div style="display: flex; align-items: center; gap: 12px">
+        <div style="background: #FBF8EF; padding: 5px; border: 1px solid #A8D0E6">
+          <img src="assets/logo.png" alt="TCL logo" style="display: block; width: 40px; height: 37px; object-fit: contain">
+        </div>
+        <div>
+          <div style="font-family: 'Redaction 35', Georgia, serif; font-size: 22px; line-height: 1.1">Tennessee Computing League</div>
+          <div style="font-size: 13px; color: #A8D0E6">Student-led · Free · Brentwood, TN</div>
+        </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 14px">
+        <a href="mailto:tennesseecomputingleague@gmail.com" style="color: #F8E9A1">tennesseecomputingleague@gmail.com</a>
+        <a href="https://www.instagram.com/tennessee_computing_league/" style="color: #F8E9A1">Instagram</a>
+      </div>
+    </div>
+  </footer>
+</div>
+<script>
+(function () {
+  // ---- Typing headline ----
+  var full = 'Tennessee Computing League';
+  var A = document.getElementById('typedA'), B = document.getElementById('typedB');
+  function show(n) { var t = full.slice(0, n); A.textContent = t.slice(0, 10); B.textContent = t.slice(10); }
+  var reduce = false;
+  try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+  if (reduce) { show(full.length); } else {
+    var n = 0, dir = 1;
+    (function tick() {
+      var delay;
+      if (dir === 1) { if (n < full.length) { n++; delay = 140; } else { dir = -1; delay = 2800; } }
+      else { if (n > 0) { n--; delay = 60; } else { dir = 1; delay = 600; } }
+      show(n); setTimeout(tick, delay);
+    })();
+  }
+
+  // ---- Lesson slideshow ----
+  // Add slide images to assets/slides/ and list them here, e.g. 'assets/slides/1.png'
+  var slides = [];
+  var total = slides.length || 6, cur = 0;
+  var img = document.getElementById('slideImg'), ph = document.getElementById('slidePh');
+  var num = document.getElementById('slideNum'), label = document.getElementById('slideLabel');
+  var dotsWrap = document.getElementById('slideDots'), dots = [];
+  for (var i = 0; i < total; i++) {
+    (function (i) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.textContent = i + 1; b.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+      b.style.cssText = "width:28px;height:28px;padding:0;border:1px solid #24305E;cursor:pointer;font-family:'Raleway',sans-serif;font-weight:700;font-size:11px;color:#24305E";
+      b.onclick = function () { go(i); };
+      dotsWrap.appendChild(b); dots.push(b);
+    })(i);
+  }
+  function go(i) {
+    cur = (i + total) % total;
+    label.textContent = (cur + 1) + ' / ' + total;
+    if (slides[cur]) { img.src = slides[cur]; img.alt = 'Lesson slide ' + (cur + 1) + ' of ' + total; img.hidden = false; ph.style.display = 'none'; }
+    else { img.hidden = true; ph.style.display = 'flex'; num.textContent = 'Slide ' + (cur + 1); }
+    dots.forEach(function (d, k) { d.style.background = k === cur ? '#F8E9A1' : '#FBF8EF'; });
+  }
+  document.getElementById('slidePrev').onclick = function () { go(cur - 1); };
+  document.getElementById('slideNext').onclick = function () { go(cur + 1); };
+  go(0);
+})();
+</script>
+</body>
+</html>
